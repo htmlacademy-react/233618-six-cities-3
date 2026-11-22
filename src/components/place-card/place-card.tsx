@@ -11,11 +11,11 @@ function PlaceCard({ offer, onMouseEnter }: PlaceCardProps) {
 
   return (
     <article onMouseEnter={onMouseEnter} className="cities__card place-card">
-      {offer.isPremium ? (
+      {offer.isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
-      ) : null}
+      )}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${offer.id}`}>
           <img

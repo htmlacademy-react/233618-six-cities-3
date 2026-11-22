@@ -1,8 +1,8 @@
 import CityTabsList from '../../components/city-tabs-list/city-tabs-list';
 import CitiesPlacesSection from '../../components/cities-places-section/cities-places-section';
 import CitiesNoPlacesSection from '../../components/cities-no-places-section/cities-no-places-section';
-import { Offer } from '../../types/offers';
-import { MouseEvent, useState } from 'react';
+import type { Offer, City } from '../../types/offers';
+import { useState } from 'react';
 import cn from 'classnames';
 
 type MainScreenProprs = {
@@ -20,12 +20,8 @@ function MainScreen({ header, offers }: MainScreenProprs) {
 
   const handleOffersItemHover = (offer: Offer) => setSelectedOffer(offer);
 
-  const handleCityTabClick = (event: MouseEvent) => {
-    const city = event.currentTarget.textContent;
-
-    if (city) {
-      setCurrentCity(city);
-    }
+  const handleCityTabClick = (city: City['name']) => {
+    setCurrentCity(city);
   };
 
   return (

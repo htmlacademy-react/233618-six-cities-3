@@ -1,5 +1,4 @@
-import { Fragment } from 'react';
-import { Offer } from '../../types/offers';
+import type { Offer } from '../../types/offers';
 import PlacesList from '../places-list/places-list';
 import Map from '../map/map';
 
@@ -17,7 +16,7 @@ function CitiesPlacesSection({
   selectedOffer,
 }: CitiesPlacesSectionProps) {
   return (
-    <Fragment>
+    <>
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">
@@ -57,7 +56,7 @@ function CitiesPlacesSection({
           />
         </section>
       </div>
-    </Fragment>
+    </>
   );
 }
 

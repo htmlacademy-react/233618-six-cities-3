@@ -1,8 +1,7 @@
 import leaflet from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 import { useEffect, useRef } from 'react';
 import useMap from '../../hooks/use-map';
-import { City, Offer } from '../../types/offers';
+import type { City, Offer } from '../../types/offers';
 import { SRC_MARKER_DEFAULT, SRC_MARKER_CURRENT } from '../../const';
 
 type mapProps = {

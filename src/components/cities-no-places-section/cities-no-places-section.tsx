@@ -1,12 +1,10 @@
-import { Fragment } from 'react';
-
 type CitiesNoPlacesSectionProps = {
   city: string;
 };
 
 function CitiesNoPlacesSection({ city }: CitiesNoPlacesSectionProps) {
   return (
-    <Fragment>
+    <>
       <section className="cities__no-places">
         <div className="cities__status-wrapper tabs__content">
           <b className="cities__status">No places to stay available</b>
@@ -16,7 +14,7 @@ function CitiesNoPlacesSection({ city }: CitiesNoPlacesSectionProps) {
         </div>
       </section>
       <div className="cities__right-section"></div>
-    </Fragment>
+    </>
   );
 }
 

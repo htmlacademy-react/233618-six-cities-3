@@ -13,7 +13,7 @@ const CITIES = [
   'Amsterdam',
   'Hamburg',
   'Dusseldorf',
-];
+] as const;
 
 const SRC_MARKER_DEFAULT = '../img/pin.svg';
 

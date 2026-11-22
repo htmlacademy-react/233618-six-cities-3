@@ -1,11 +1,11 @@
-import { MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { CITIES } from '../../const';
+import type { City } from '../../types/offers';
 import cn from 'classnames';
 
 type CityTabsListProps = {
   currentCity: string;
-  onTabClick: (event: MouseEvent) => void;
+  onTabClick: (city: City['name']) => void;
 };
 
 function CityTabsList({ currentCity, onTabClick }: CityTabsListProps) {
@@ -20,7 +20,7 @@ function CityTabsList({ currentCity, onTabClick }: CityTabsListProps) {
                   'tabs__item--active': city === currentCity,
                 })}
                 to="#"
-                onClick={(event) => onTabClick(event)}
+                onClick={() => onTabClick(city)}
               >
                 <span>{city}</span>
               </Link>
