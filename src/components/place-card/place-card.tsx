@@ -3,19 +3,19 @@ import { Link } from 'react-router-dom';
 
 type PlaceCardProps = {
   offer: Offer;
-  onMouseOver: () => void;
+  onMouseEnter: () => void;
 };
 
-function PlaceCard({ offer, onMouseOver }: PlaceCardProps) {
+function PlaceCard({ offer, onMouseEnter }: PlaceCardProps) {
   const ratingPercent = ((offer.rating / 5) * 100).toString();
 
   return (
-    <article onMouseOver={onMouseOver} className="cities__card place-card">
-      {offer.isPremium ? (
+    <article onMouseEnter={onMouseEnter} className="cities__card place-card">
+      {offer.isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
-      ) : null}
+      )}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${offer.id}`}>
           <img

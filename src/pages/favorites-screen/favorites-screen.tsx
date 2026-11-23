@@ -1,5 +1,5 @@
 import FavoritePlaceCard from '../../components/favorite-place-card/favorite-place-card';
-import { Offer } from '../../types/offers';
+import type { Offer } from '../../types/offers';
 
 type FavoritesScreenProprs = {
   header: JSX.Element;

@@ -1,6 +1,9 @@
-import PlacesList from '../../components/places-list/places-list';
-import { Setting } from '../../const';
-import { Offer } from '../../types/offers';
+import CityTabsList from '../../components/city-tabs-list/city-tabs-list';
+import CitiesPlacesSection from '../../components/cities-places-section/cities-places-section';
+import CitiesNoPlacesSection from '../../components/cities-no-places-section/cities-no-places-section';
+import type { Offer, City } from '../../types/offers';
+import { useState } from 'react';
+import cn from 'classnames';
 
 type MainScreenProprs = {
   header: JSX.Element;
@@ -8,86 +11,45 @@ type MainScreenProprs = {
 };
 
 function MainScreen({ header, offers }: MainScreenProprs) {
+  const [currentCity, setCurrentCity] = useState('Amsterdam');
+  const [selectedOffer, setSelectedOffer] = useState({});
+
+  const currentCityOffers = offers.filter(
+    (offer) => offer.city.name === currentCity,
+  );
+
+  const handleOffersItemHover = (offer: Offer) => setSelectedOffer(offer);
+
+  const handleCityTabClick = (city: City['name']) => {
+    setCurrentCity(city);
+  };
+
   return (
     <div className="page page--gray page--main">
       {header}
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <div className="tabs">
-          <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul>
-          </section>
-        </div>
+        <CityTabsList
+          currentCity={currentCity}
+          onTabClick={handleCityTabClick}
+        />
         <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">
-                {Setting.TOTAL_PLACES_COUNT} places to stay in Amsterdam
-              </b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex={0}>
-                  Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li
-                    className="places__option places__option--active"
-                    tabIndex={0}
-                  >
-                    Popular
-                  </li>
-                  <li className="places__option" tabIndex={0}>
-                    Price: low to high
-                  </li>
-                  <li className="places__option" tabIndex={0}>
-                    Price: high to low
-                  </li>
-                  <li className="places__option" tabIndex={0}>
-                    Top rated first
-                  </li>
-                </ul>
-              </form>
-              <PlacesList offers={offers} />
-            </section>
-            <div className="cities__right-section">
-              <section className="cities__map map"></section>
-            </div>
+          <div
+            className={cn('cities__places-container', 'container', {
+              'cities__places-container--empty': !currentCityOffers.length,
+            })}
+          >
+            {currentCityOffers.length ? (
+              <CitiesPlacesSection
+                offers={currentCityOffers}
+                city={currentCity}
+                onOfferHover={handleOffersItemHover}
+                selectedOffer={selectedOffer}
+              />
+            ) : (
+              <CitiesNoPlacesSection city={currentCity} />
+            )}
           </div>
         </div>
       </main>

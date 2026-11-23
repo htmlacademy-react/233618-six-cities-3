@@ -1,7 +1,3 @@
-const Setting = {
-  TOTAL_PLACES_COUNT: 312,
-};
-
 enum AppRoute {
   ROOT = '/',
   LOGIN = '/login',
@@ -10,4 +6,17 @@ enum AppRoute {
   NOT_FOUND = '*',
 }
 
-export { Setting, AppRoute };
+const CITIES = [
+  'Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf',
+] as const;
+
+const SRC_MARKER_DEFAULT = '../img/pin.svg';
+
+const SRC_MARKER_CURRENT = '../img/pin-active.svg';
+
+export { AppRoute, CITIES, SRC_MARKER_CURRENT, SRC_MARKER_DEFAULT };
