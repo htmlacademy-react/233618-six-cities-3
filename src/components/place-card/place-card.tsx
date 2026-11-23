@@ -1,5 +1,6 @@
 import { Offer } from '../../types/offers';
 import { Link } from 'react-router-dom';
+import { calcRatingPercent } from '../../utils';
 
 type PlaceCardProps = {
   offer: Offer;
@@ -7,7 +8,7 @@ type PlaceCardProps = {
 };
 
 function PlaceCard({ offer, onMouseEnter }: PlaceCardProps) {
-  const ratingPercent = ((offer.rating / 5) * 100).toString();
+  const ratingPercent = calcRatingPercent(offer.rating);
 
   return (
     <article onMouseEnter={onMouseEnter} className="cities__card place-card">
