@@ -5,19 +5,25 @@ import { calcRatingPercent } from '../../utils';
 type PlaceCardProps = {
   offer: Offer;
   onMouseEnter: () => void;
+  classNamePrefix: 'near-places' | 'cities';
 };
 
-function PlaceCard({ offer, onMouseEnter }: PlaceCardProps) {
+function PlaceCard({ offer, onMouseEnter, classNamePrefix }: PlaceCardProps) {
   const ratingPercent = calcRatingPercent(offer.rating);
 
   return (
-    <article onMouseEnter={onMouseEnter} className="cities__card place-card">
+    <article
+      onMouseEnter={onMouseEnter}
+      className={`${classNamePrefix}__card place-card`}
+    >
       {offer.isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div
+        className={`${classNamePrefix}__image-wrapper place-card__image-wrapper`}
+      >
         <Link to={`/offer/${offer.id}`}>
           <img
             className="place-card__image"

@@ -45,7 +45,11 @@ function CitiesPlacesSection({
             </li>
           </ul>
         </form>
-        <PlacesList offers={offers} onOfferHover={onOfferHover} />
+        <PlacesList
+          offers={offers}
+          onOfferHover={onOfferHover}
+          isNearPlacesList={false}
+        />
       </section>
       <div className="cities__right-section">
         <section className="cities__map map">
