@@ -1,4 +1,5 @@
 import type { CITIES } from '../const';
+import type { User } from './user';
 
 type Location = {
   latitude: number;
@@ -24,4 +25,13 @@ type Offer = {
   rating: number;
 };
 
-export type { Offer, City };
+type FullOffer = Omit<Offer, 'previewImage'> & {
+  description: string;
+  images: string[];
+  goods: string[];
+  host: User;
+  bedrooms: number;
+  maxAdults: number;
+};
+
+export type { Offer, FullOffer, City };

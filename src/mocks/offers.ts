@@ -93,6 +93,41 @@ const offers: Offer[] = [
     isPremium: true,
     rating: 5,
   },
+  {
+    id: 'a855f568-851c-4e19-8e2a-b3375f34fb5a',
+    title: 'Amazing and Extremely Central Flat',
+    type: 'room',
+    price: 120,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/17.jpg',
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.37454,
+        longitude: 4.897976,
+        zoom: 13,
+      },
+    },
+    location: {
+      latitude: 52.36554,
+      longitude: 4.911976,
+      zoom: 16,
+    },
+    isFavorite: false,
+    isPremium: true,
+    rating: 3.2,
+  },
 ];
 
-export { offers };
+const getNearOffers = (offerId: string): Offer[] => {
+  const result: Offer[] = [];
+
+  offers.forEach((offer) => {
+    if (result.length < 3 && offer.id !== offerId) {
+      result.push(offer);
+    }
+  });
+
+  return result;
+};
+
+export { offers, getNearOffers };

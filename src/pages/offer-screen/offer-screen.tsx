@@ -1,11 +1,16 @@
 import ReviewsList from '../../components/reviews-list/reviews-list';
+import Map from '../../components/map/map';
 import { reviews } from '../../mocks/reviews';
+import { offer } from '../../mocks/offer';
+import { getNearOffers } from '../../mocks/offers';
 
 type OfferScreenProprs = {
   header: JSX.Element;
 };
 
 function OfferScreen({ header }: OfferScreenProprs) {
+  const nearPlaces = getNearOffers(offer.id);
+
   return (
     <div className="page">
       {header}
@@ -142,7 +147,13 @@ function OfferScreen({ header }: OfferScreenProprs) {
               <ReviewsList reviews={reviews} />
             </div>
           </div>
-          <section className="offer__map map"></section>
+          <section className="offer__map map">
+            <Map
+              city={offer.city}
+              offers={[...nearPlaces, offer]}
+              selectedOffer={offer}
+            />
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">

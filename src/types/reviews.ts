@@ -1,8 +1,4 @@
-type User = {
-  name: string;
-  avatarUrl: string;
-  isPro: boolean;
-};
+import type { User } from './user';
 
 type Review = {
   id: string;
