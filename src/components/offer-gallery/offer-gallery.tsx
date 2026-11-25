@@ -14,7 +14,7 @@ function OfferGallery({ offer }: OfferGalleryProps) {
               className="offer__image"
               src={src}
               alt={`${offer.type} photo`}
-            ></img>
+            />
           </div>
         ))}
       </div>

@@ -42,9 +42,7 @@ function OfferScreen({ header }: OfferScreenProprs) {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span
-                    style={{ width: `${calcRatingPercent(rating)}%` }}
-                  ></span>
+                  <span style={{ width: `${calcRatingPercent(rating)}%` }} />
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="offer__rating-value rating__value">
