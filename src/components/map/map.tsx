@@ -1,13 +1,13 @@
 import leaflet from 'leaflet';
 import { useEffect, useRef } from 'react';
 import useMap from '../../hooks/use-map';
-import type { City, Offer } from '../../types/offers';
+import type { City, Offer, FullOffer } from '../../types/offers';
 import { SRC_MARKER_DEFAULT, SRC_MARKER_CURRENT } from '../../const';
 
 type mapProps = {
   city: City;
-  offers: Offer[];
-  selectedOffer: Offer | Record<string, never>;
+  offers: (Offer | FullOffer)[];
+  selectedOffer: Offer | FullOffer | Record<string, never>;
 };
 
 const defaultCustomIcon = leaflet.icon({
@@ -37,7 +37,9 @@ function Map({ city, offers, selectedOffer }: mapProps) {
             },
             {
               icon:
-                offer === selectedOffer ? currentCustomIcon : defaultCustomIcon,
+                offer.id === selectedOffer.id
+                  ? currentCustomIcon
+                  : defaultCustomIcon,
             },
           )
           .addTo(map);
@@ -45,7 +47,7 @@ function Map({ city, offers, selectedOffer }: mapProps) {
     }
   }, [map, offers, selectedOffer]);
 
-  return <div style={{ height: '500px' }} ref={mapRef}></div>;
+  return <div style={{ height: '579px' }} ref={mapRef}></div>;
 }
 
 export default Map;
